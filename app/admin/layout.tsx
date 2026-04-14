@@ -20,6 +20,12 @@ export default function AdminLayout({
   const isLoginPage = pathname === '/admin/login';
 
   useEffect(() => {
+    // If authenticated and on login page, redirect to dashboard
+    if (!isLoading && isAuthenticated && isLoginPage) {
+      router.push('/admin/dashboard');
+      return;
+    }
+    
     // Only redirect if not on login page and not authenticated
     if (!isLoading && !isAuthenticated && !isLoginPage) {
       router.push('/admin/login');

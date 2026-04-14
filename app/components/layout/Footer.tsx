@@ -48,7 +48,10 @@ const Footer = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     projectType: 'residential',
+    city: '',
+    budget: '',
     message: ''
   });
 
@@ -114,11 +117,12 @@ const Footer = () => {
       const submissionData = {
         name: formData.name,
         email: formData.email,
-        phone: '',
+        phone: formData.phone,
         subject: 'Footer Inquiry',
         message: formData.message,
         projectType: formData.projectType,
-        budget: 'not-sure'
+        city: formData.city,
+        budget: formData.budget
       };
 
       const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
@@ -137,7 +141,10 @@ const Footer = () => {
         setFormData({
           name: '',
           email: '',
+          phone: '',
           projectType: 'residential',
+          city: '',
+          budget: '',
           message: ''
         });
         setTimeout(() => setIsSubmitted(false), 4000);
@@ -208,7 +215,7 @@ const Footer = () => {
             {/* Row 1: Name & Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-xs uppercase tracking-widest text-zinc-500 mb-2 font-bold">Your Name</label>
+                <label className="block text-xs uppercase tracking-widest text-zinc-500 mb-2 font-bold">Your Name *</label>
                 <input 
                   type="text"
                   name="name"
@@ -216,11 +223,11 @@ const Footer = () => {
                   onChange={handleInputChange}
                   required
                   className="w-full bg-zinc-950 border border-zinc-800 text-white px-4 py-3.5 rounded-sm focus:outline-none focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] transition-colors placeholder:text-zinc-700"
-                  placeholder="John Doe"
+                  placeholder="Rajesh Kumar"
                 />
               </div>
               <div>
-                <label className="block text-xs uppercase tracking-widest text-zinc-500 mb-2 font-bold">Email Address</label>
+                <label className="block text-xs uppercase tracking-widest text-zinc-500 mb-2 font-bold">Email Address *</label>
                 <input 
                   type="email"
                   name="email"
@@ -228,25 +235,87 @@ const Footer = () => {
                   onChange={handleInputChange}
                   required
                   className="w-full bg-zinc-950 border border-zinc-800 text-white px-4 py-3.5 rounded-sm focus:outline-none focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] transition-colors placeholder:text-zinc-700"
-                  placeholder="john@example.com"
+                  placeholder="rajesh@example.com"
                 />
               </div>
             </div>
 
-            {/* Row 2: Project Type */}
-            <div>
-              <label className="block text-xs uppercase tracking-widest text-zinc-500 mb-2 font-bold">Project Type</label>
-              <select 
-                name="projectType"
-                value={formData.projectType}
-                onChange={handleInputChange}
-                className="w-full bg-zinc-950 border border-zinc-800 text-white px-4 py-3.5 rounded-sm focus:outline-none focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] transition-colors appearance-none cursor-pointer"
-              >
-                <option value="residential">Residential Architecture</option>
-                <option value="commercial">Commercial Interior</option>
-                <option value="industrial">Hospitality / Restaurant</option>
-                <option value="other">General Inquiry</option>
-              </select>
+            {/* Row 2: Phone & City */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs uppercase tracking-widest text-zinc-500 mb-2 font-bold">Phone Number *</label>
+                <input 
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  required
+                  pattern="[+]{1}[0-9]{2}\s[0-9]{5}\s[0-9]{5}"
+                  className="w-full bg-zinc-950 border border-zinc-800 text-white px-4 py-3.5 rounded-sm focus:outline-none focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] transition-colors placeholder:text-zinc-700"
+                  placeholder="+91 98765 43210"
+                />
+              </div>
+              <div>
+                <label className="block text-xs uppercase tracking-widest text-zinc-500 mb-2 font-bold">City *</label>
+                <select 
+                  name="city"
+                  value={formData.city}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full bg-zinc-950 border border-zinc-800 text-white px-4 py-3.5 rounded-sm focus:outline-none focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] transition-colors appearance-none cursor-pointer"
+                >
+                  <option value="">Select City</option>
+                  <option value="mumbai">Mumbai</option>
+                  <option value="jaipur">Jaipur</option>
+                  <option value="delhi">Delhi NCR</option>
+                  <option value="bangalore">Bangalore</option>
+                  <option value="hyderabad">Hyderabad</option>
+                  <option value="pune">Pune</option>
+                  <option value="chennai">Chennai</option>
+                  <option value="kolkata">Kolkata</option>
+                  <option value="ahmedabad">Ahmedabad</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Row 3: Project Type & Budget */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs uppercase tracking-widest text-zinc-500 mb-2 font-bold">Project Type *</label>
+                <select 
+                  name="projectType"
+                  value={formData.projectType}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full bg-zinc-950 border border-zinc-800 text-white px-4 py-3.5 rounded-sm focus:outline-none focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] transition-colors appearance-none cursor-pointer"
+                >
+                  <option value="residential">Residential (Apartment/Villa)</option>
+                  <option value="commercial">Commercial (Office/Retail)</option>
+                  <option value="hospitality">Hospitality (Hotel/Restaurant)</option>
+                  <option value="renovation">Renovation/Remodeling</option>
+                  <option value="interior">Interior Design Only</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs uppercase tracking-widest text-zinc-500 mb-2 font-bold">Budget Range (₹) *</label>
+                <select 
+                  name="budget"
+                  value={formData.budget}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full bg-zinc-950 border border-zinc-800 text-white px-4 py-3.5 rounded-sm focus:outline-none focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] transition-colors appearance-none cursor-pointer"
+                >
+                  <option value="">Select Budget Range</option>
+                  <option value="5-10 lakhs">₹5 Lakhs - ₹10 Lakhs</option>
+                  <option value="10-25 lakhs">₹10 Lakhs - ₹25 Lakhs</option>
+                  <option value="25-50 lakhs">₹25 Lakhs - ₹50 Lakhs</option>
+                  <option value="50 lakhs-1 crore">₹50 Lakhs - ₹1 Crore</option>
+                  <option value="1-2 crore">₹1 Crore - ₹2 Crore</option>
+                  <option value="2+ crore">₹2 Crore+</option>
+                  <option value="not-sure">Not Sure Yet</option>
+                </select>
+              </div>
             </div>
 
             {/* Row 3: Project Details */}

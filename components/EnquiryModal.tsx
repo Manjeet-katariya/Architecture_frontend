@@ -14,7 +14,9 @@ export default function EnquiryModal({ isOpen, onClose }: EnquiryModalProps) {
   name: '',
   email: '',
   phone: '',
-  projectType: 'residential', // ✅ ADD THIS
+  projectType: 'residential',
+  city: '',
+  budget: '',
   message: ''
 });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -62,8 +64,9 @@ const handleSubmit = async (e: React.FormEvent) => {
   phone: formData.phone,
   subject: 'Website Enquiry',
   message: formData.message,
-  projectType: formData.projectType, // ✅ SAME AS FOOTER
-  budget: 'not-sure'
+  projectType: formData.projectType,
+  city: formData.city,
+  budget: formData.budget
 })
     });
 
@@ -79,7 +82,9 @@ const handleSubmit = async (e: React.FormEvent) => {
   name: '',
   email: '',
   phone: '',
-  projectType: 'residential', // ✅ KEEP THIS
+  projectType: 'residential',
+  city: '',
+  budget: '',
   message: ''
 });
       }, 2500);
@@ -161,34 +166,100 @@ const handleSubmit = async (e: React.FormEvent) => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      placeholder="John Doe"
+                      placeholder="Rajesh Kumar"
                       className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-sm focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] outline-none transition-all text-sm text-slate-900"
                     />
                   </div>
 
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[10px] uppercase tracking-widest text-zinc-500 mb-1.5 font-bold">Email Address</label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        placeholder="rajesh@example.com"
+                        className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-sm focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] outline-none transition-all text-sm text-slate-900"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] uppercase tracking-widest text-zinc-500 mb-1.5 font-bold">Phone Number *</label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        required
+                        placeholder="+91 98765 43210"
+                        pattern="[+]{1}[0-9]{2}\s[0-9]{5}\s[0-9]{5}"
+                        className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-sm focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] outline-none transition-all text-sm text-slate-900"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-[10px] uppercase tracking-widest text-zinc-500 mb-1.5 font-bold">Project Type</label>
+                      <select
+                        name="projectType"
+                        value={formData.projectType}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-sm focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] outline-none transition-all text-sm text-slate-900"
+                      >
+                        <option value="residential">Residential (Apartment/Villa)</option>
+                        <option value="commercial">Commercial (Office/Retail)</option>
+                        <option value="hospitality">Hospitality (Hotel/Restaurant)</option>
+                        <option value="renovation">Renovation/Remodeling</option>
+                        <option value="interior">Interior Design Only</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-[10px] uppercase tracking-widest text-zinc-500 mb-1.5 font-bold">City</label>
+                      <select
+                        name="city"
+                        value={formData.city}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-sm focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] outline-none transition-all text-sm text-slate-900"
+                      >
+                        <option value="">Select City</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="jaipur">Jaipur</option>
+                        <option value="delhi">Delhi NCR</option>
+                        <option value="bangalore">Bangalore</option>
+                        <option value="hyderabad">Hyderabad</option>
+                        <option value="pune">Pune</option>
+                        <option value="chennai">Chennai</option>
+                        <option value="kolkata">Kolkata</option>
+                        <option value="ahmedabad">Ahmedabad</option>
+                        <option value="other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+
                   <div>
-                    <label className="block text-[10px] uppercase tracking-widest text-zinc-500 mb-1.5 font-bold">Email Address</label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
+                    <label className="block text-[10px] uppercase tracking-widest text-zinc-500 mb-1.5 font-bold">Budget Range (₹)</label>
+                    <select
+                      name="budget"
+                      value={formData.budget}
                       onChange={handleInputChange}
                       required
-                      placeholder="john@example.com"
                       className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-sm focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] outline-none transition-all text-sm text-slate-900"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-[10px] uppercase tracking-widest text-zinc-500 mb-1.5 font-bold">Phone (Optional)</label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      placeholder="+1 (234) 567-890"
-                      className="w-full px-4 py-2.5 bg-zinc-50 border border-zinc-200 rounded-sm focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] outline-none transition-all text-sm text-slate-900"
-                    />
+                    >
+                      <option value="">Select Budget Range</option>
+                      <option value="5-10 lakhs">₹5 Lakhs - ₹10 Lakhs</option>
+                      <option value="10-25 lakhs">₹10 Lakhs - ₹25 Lakhs</option>
+                      <option value="25-50 lakhs">₹25 Lakhs - ₹50 Lakhs</option>
+                      <option value="50 lakhs-1 crore">₹50 Lakhs - ₹1 Crore</option>
+                      <option value="1-2 crore">₹1 Crore - ₹2 Crore</option>
+                      <option value="2+ crore">₹2 Crore+</option>
+                      <option value="not-sure">Not Sure Yet</option>
+                    </select>
                   </div>
                   
 

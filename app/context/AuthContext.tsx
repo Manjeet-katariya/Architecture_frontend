@@ -40,9 +40,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = async (email: string, password: string) => {
-    setIsLoading(true);
     try {
       const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+      console.log('AuthContext: Calling API...', API_URL);
+      
       const response = await fetch(`${API_URL}/api/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -50,9 +51,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
 
       const data = await response.json();
+      console.log('AuthContext: Response received:', data);
 
       if (!response.ok || !data.success) {
-        throw new Error(data.message || 'Invalid credentials');
+        const errorMessage = data.message || 'Invalid email or password';
+        console.log('AuthContext: Login failed -', errorMessage);
+        throw new Error(errorMessage);
       }
 
       const userData: User = {
@@ -64,10 +68,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       setUser(userData);
       localStorage.setItem('adminUser', JSON.stringify(userData));
-    } catch (error) {
-      throw error;
-    } finally {
-      setIsLoading(false);
+      console.log('AuthContext: Login successful');
+    } catch (error: any) {
+      console.log('AuthContext: Error caught -', error.message);
+      throw new Error(error.message || 'Invalid email or password');
     }
   };
 

@@ -39,9 +39,10 @@ export default function ContactPage() {
     email: '',
     phone: '',
     projectType: 'residential',
+    city: '',
     subject: '',
     message: '',
-    budget: 'not-sure'
+    budget: ''
   });
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -145,9 +146,10 @@ export default function ContactPage() {
           email: '',
           phone: '',
           projectType: 'residential',
+          city: '',
           subject: '',
           message: '',
-          budget: 'not-sure'
+          budget: ''
         });
         setUploadedImage(null);
         setTimeout(() => setIsSubmitted(false), 4000);
@@ -350,7 +352,7 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm text-zinc-500 mb-2 font-medium">Your Name</label>
+                      <label className="block text-sm text-zinc-500 mb-2 font-medium">Your Name *</label>
                       <input 
                         type="text"
                         name="name"
@@ -358,11 +360,11 @@ export default function ContactPage() {
                         onChange={handleInputChange}
                         required
                         className="w-full bg-zinc-50 border border-zinc-200 text-slate-900 px-4 py-3 rounded-sm focus:outline-none focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] transition-colors"
-                        placeholder="John Doe"
+                        placeholder="Rajesh Kumar"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm text-zinc-500 mb-2 font-medium">Email Address</label>
+                      <label className="block text-sm text-zinc-500 mb-2 font-medium">Email Address *</label>
                       <input 
                         type="email"
                         name="email"
@@ -370,60 +372,90 @@ export default function ContactPage() {
                         onChange={handleInputChange}
                         required
                         className="w-full bg-zinc-50 border border-zinc-200 text-slate-900 px-4 py-3 rounded-sm focus:outline-none focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] transition-colors"
-                        placeholder="john@example.com"
+                        placeholder="rajesh@example.com"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm text-zinc-500 mb-2 font-medium">Phone (Optional)</label>
+                      <label className="block text-sm text-zinc-500 mb-2 font-medium">Phone Number *</label>
                       <input 
                         type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
+                        required
+                        pattern="[+]{1}[0-9]{2}\s[0-9]{5}\s[0-9]{5}"
                         className="w-full bg-zinc-50 border border-zinc-200 text-slate-900 px-4 py-3 rounded-sm focus:outline-none focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] transition-colors"
-                        placeholder="+1 (234) 567-890"
+                        placeholder="+91 98765 43210"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm text-zinc-500 mb-2 font-medium">Budget Range</label>
+                      <label className="block text-sm text-zinc-500 mb-2 font-medium">City *</label>
                       <select 
-                        name="budget"
-                        value={formData.budget}
+                        name="city"
+                        value={formData.city}
                         onChange={handleInputChange}
+                        required
                         className="w-full bg-zinc-50 border border-zinc-200 text-slate-900 px-4 py-3 rounded-sm focus:outline-none focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] transition-colors"
                       >
-                        <option value="not-sure">Not sure yet</option>
-                        <option value="under-5lakh">Under 5 Lakh</option>
-                        <option value="5-10-lakh">5-10 Lakh</option>
-                        <option value="10-25-lakh">10-25 Lakh</option>
-                        <option value="25-50-lakh">25-50 Lakh</option>
-                        <option value="50-lakh-plus">50 Lakh+</option>
+                        <option value="">Select City</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="jaipur">Jaipur</option>
+                        <option value="delhi">Delhi NCR</option>
+                        <option value="bangalore">Bangalore</option>
+                        <option value="hyderabad">Hyderabad</option>
+                        <option value="pune">Pune</option>
+                        <option value="chennai">Chennai</option>
+                        <option value="kolkata">Kolkata</option>
+                        <option value="ahmedabad">Ahmedabad</option>
+                        <option value="other">Other</option>
                       </select>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm text-zinc-500 mb-2 font-medium">Project Type</label>
+                      <label className="block text-sm text-zinc-500 mb-2 font-medium">Project Type *</label>
                       <select 
                         name="projectType"
                         value={formData.projectType}
                         onChange={handleInputChange}
+                        required
                         className="w-full bg-zinc-50 border border-zinc-200 text-slate-900 px-4 py-3 rounded-sm focus:outline-none focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] transition-colors"
                       >
-                        <option value="residential">Residential</option>
-                        <option value="commercial">Commercial</option>
-                        <option value="industrial">Industrial</option>
-                        <option value="renovation">Renovation</option>
-                        <option value="interior">Interior Design</option>
-                        <option value="other">Other</option>
+                        <option value="residential">Residential (Apartment/Villa)</option>
+                        <option value="commercial">Commercial (Office/Retail)</option>
+                        <option value="hospitality">Hospitality (Hotel/Restaurant)</option>
+                        <option value="renovation">Renovation/Remodeling</option>
+                        <option value="interior">Interior Design Only</option>
                       </select>
                     </div>
                     <div>
-                      <label className="block text-sm text-zinc-500 mb-2 font-medium">Subject</label>
+                      <label className="block text-sm text-zinc-500 mb-2 font-medium">Budget Range (₹) *</label>
+                      <select 
+                        name="budget"
+                        value={formData.budget}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full bg-zinc-50 border border-zinc-200 text-slate-900 px-4 py-3 rounded-sm focus:outline-none focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] transition-colors"
+                      >
+                        <option value="">Select Budget Range</option>
+                        <option value="5-10 lakhs">₹5 Lakhs - ₹10 Lakhs</option>
+                        <option value="10-25 lakhs">₹10 Lakhs - ₹25 Lakhs</option>
+                        <option value="25-50 lakhs">₹25 Lakhs - ₹50 Lakhs</option>
+                        <option value="50 lakhs-1 crore">₹50 Lakhs - ₹1 Crore</option>
+                        <option value="1-2 crore">₹1 Crore - ₹2 Crore</option>
+                        <option value="2+ crore">₹2 Crore+</option>
+                        <option value="not-sure">Not Sure Yet</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm text-zinc-500 mb-2 font-medium">Subject *</label>
                       <input 
                         type="text"
                         name="subject"

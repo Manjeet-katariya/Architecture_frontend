@@ -2,15 +2,35 @@
 
 import { motion } from 'framer-motion';
 import MissionVision from '../components/MissionVision'; 
-import FeaturedProjects from '../components/FeaturedProjects'; 
-import { Award, Users, Clock, CheckCircle } from 'lucide-react';
+import FeaturedProjects from '../components/FeaturedProjects';
+import { ClipboardList, PenTool, Hammer, Key } from 'lucide-react';
 
 export default function Home() {
-  const features = [
-    { icon: Award, title: 'Award Winning', description: 'Recognized globally for excellence in visionary architectural design.' },
-    { icon: Users, title: 'Expert Team', description: 'A collective of master architects with decades of shared experience.' },
-    { icon: Clock, title: 'Timely Delivery', description: 'Meticulous project management ensuring precision and punctuality.' },
-    { icon: CheckCircle, title: 'Quality Assurance', description: 'Uncompromising standards in both material selection and construction.' },
+  const processSteps = [
+    { 
+      number: '01', 
+      title: 'BRIEFING', 
+      description: 'We begin with an exhaustive questionnaire to fully understand the client\'s needs and expectations. The most important of all steps.',
+      icon: ClipboardList
+    },
+    { 
+      number: '02', 
+      title: 'DESIGN', 
+      description: 'Translating the brief into the blueprint of what is to come. From moodboards to models, we design every last detail.',
+      icon: PenTool
+    },
+    { 
+      number: '03', 
+      title: 'EXECUTION', 
+      description: 'Bringing our designs to life by building it from the ground up. As we only take on end-to-end projects, everything from structural design to decor is executed in this phase.',
+      icon: Hammer
+    },
+    { 
+      number: '04', 
+      title: 'HANDOVER', 
+      description: 'The most anticipated moment, where we hand our clients the keys to their new space, all ready to move in.',
+      icon: Key
+    },
   ];
 
   return (
@@ -56,7 +76,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.5 }} 
               className="text-[#a68a6b] font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[10px] sm:text-xs mb-4 block"
             >
-              Our Masterpieces
+              RK INTERIOR STUDIO
             </motion.span>
             
             <motion.h1 
@@ -143,10 +163,128 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- 3. FEATURED PROJECTS --- */}
+      {/* --- 3. DESIGN PHILOSOPHY SECTION --- */}
+      <section className="py-20 md:py-32 bg-white relative z-20 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            
+            {/* Left: Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="order-2 lg:order-1"
+            >
+              {/* Section Label */}
+              <div className="flex items-center gap-3 mb-6">
+                <div className="h-px w-8 bg-[#a68a6b]"></div>
+                <span className="text-[#a68a6b] font-semibold uppercase tracking-widest text-sm">Our Philosophy</span>
+              </div>
+              
+              {/* Main Headline */}
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-slate-900 mb-6 leading-tight"
+              >
+                We believe in design as a <span className="text-[#a68a6b]">lifestyle choice</span>
+              </motion.h2>
+              
+              {/* Divider */}
+              <motion.div 
+                initial={{ opacity: 0, scaleX: 0 }}
+                whileInView={{ opacity: 1, scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="h-1 w-24 bg-gradient-to-r from-[#a68a6b] to-transparent mb-8 origin-left"
+              />
+              
+              {/* Paragraph 1 */}
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="text-base sm:text-lg text-slate-600 font-light leading-relaxed mb-6"
+              >
+                At <span className="font-semibold text-slate-900">Rk interior studio</span>, we believe in design as a lifestyle choice. We base our work on a fusion of minimalism and functionality, utilizing clear shapes to emphasize what truly matters. With our offices in <span className="font-semibold text-[#a68a6b]">Mumbai</span> and <span className="font-semibold text-[#a68a6b]">Jaipur</span> we're delighted to deliver our exclusive interior design solutions.
+              </motion.p>
+              
+              {/* Paragraph 2 */}
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="text-base sm:text-lg text-slate-600 font-light leading-relaxed mb-8"
+              >
+                Our main source of inspiration is always our clients' values, so rather than making them reconsider their habits, we aim at helping our customers reflect on their key priorities and see design as a means of <span className="font-semibold text-slate-900">self-expression</span>.
+              </motion.p>
+              
+              {/* Key Features */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5 }}
+                className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+              >
+                <div className="flex items-start gap-3 p-4 bg-zinc-50 border-l-2 border-[#a68a6b]">
+                  <div className="w-2 h-2 bg-[#a68a6b] rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-sm text-slate-700 font-medium">Minimalism & Functionality</span>
+                </div>
+                <div className="flex items-start gap-3 p-4 bg-zinc-50 border-l-2 border-[#a68a6b]">
+                  <div className="w-2 h-2 bg-[#a68a6b] rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-sm text-slate-700 font-medium">Client-Centered Design</span>
+                </div>
+                <div className="flex items-start gap-3 p-4 bg-zinc-50 border-l-2 border-[#a68a6b]">
+                  <div className="w-2 h-2 bg-[#a68a6b] rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-sm text-slate-700 font-medium">Self-Expression Through Design</span>
+                </div>
+                <div className="flex items-start gap-3 p-4 bg-zinc-50 border-l-2 border-[#a68a6b]">
+                  <div className="w-2 h-2 bg-[#a68a6b] rounded-full mt-2 flex-shrink-0"></div>
+                  <span className="text-sm text-slate-700 font-medium">Exclusive Solutions</span>
+                </div>
+              </motion.div>
+            </motion.div>
+            
+            {/* Right: Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="order-1 lg:order-2 relative"
+            >
+              <div className="relative h-[400px] sm:h-[500px] lg:h-[600px]">
+                {/* Main Image */}
+                <img 
+                  src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                  alt="Interior Design Philosophy" 
+                  className="w-full h-full object-cover rounded-sm shadow-2xl" 
+                />
+                
+                {/* Decorative Accent */}
+                <div className="absolute -bottom-6 -left-6 w-32 h-32 border-2 border-[#a68a6b] -z-10"></div>
+                <div className="absolute -top-6 -right-6 w-32 h-32 border-2 border-[#a68a6b] -z-10"></div>
+              </div>
+            </motion.div>
+            
+          </div>
+        </div>
+        
+        {/* Background Accent */}
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-zinc-50/50 to-transparent -z-10"></div>
+      </section>
+
+      {/* --- 4. FEATURED PROJECTS --- */}
       <FeaturedProjects />
 
-      {/* --- 4. PHILOSOPHY SECTION --- */}
+      {/* --- 5. PHILOSOPHY SECTION --- */}
       <section className="py-20 md:py-24 bg-zinc-50 relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -177,32 +315,37 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <motion.div 
-                  key={index} 
-                  initial={{ opacity: 0, y: 20 }} 
-                  whileInView={{ opacity: 1, y: 0 }} 
-                  viewport={{ once: true }} 
-                  transition={{ delay: index * 0.1 }} 
-                  whileHover={{ y: -5 }} 
-                  className="bg-white p-6 sm:p-8 border border-zinc-200 group transition-all duration-300 hover:shadow-xl hover:border-[#a68a6b]"
-                >
+            {processSteps.map((step, index) => (
+              <motion.div 
+                key={index} 
+                initial={{ opacity: 0, y: 20 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true }} 
+                transition={{ delay: index * 0.1 }} 
+                whileHover={{ y: -5 }} 
+                className="bg-white p-6 sm:p-8 border border-zinc-200 group transition-all duration-300 hover:shadow-xl hover:border-[#a68a6b] relative"
+              >
+                {/* Step Number */}
+                <div className="absolute top-4 right-4 text-5xl md:text-6xl font-serif font-bold text-[#a68a6b]/10 group-hover:text-[#a68a6b]/20 transition-colors">
+                  {step.number}
+                </div>
+                
+                {/* Content */}
+                <div className="relative z-10">
                   <div className="inline-flex p-4 bg-zinc-50 shadow-sm mb-6 group-hover:bg-[#a68a6b] transition-colors duration-300">
-                    <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#a68a6b] group-hover:text-white transition-colors duration-300" />
+                    <step.icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#a68a6b] group-hover:text-white transition-colors duration-300" />
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 font-serif">{feature.title}</h3>
-                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-light">{feature.description}</p>
-                </motion.div>
-              );
-            })}
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 font-serif tracking-wide">{step.title}</h3>
+                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-light">{step.description}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
           
         </div>
       </section>
 
-      {/* --- 5. MISSION & VISION SECTION --- */}
+      {/* --- 6. MISSION & VISION SECTION --- */}
       <MissionVision />
     </div>
   );
