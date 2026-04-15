@@ -29,7 +29,6 @@ interface PaginationInfo {
   limit: number;
 }
 
-// Premium Fallback Data to prevent crashes if backend is down
 const fallbackProjects: Project[] = [
   {
     _id: "p1",
@@ -104,23 +103,18 @@ export default function PortfolioPage() {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
-  // Initial load - first 20 projects
   useEffect(() => {
     fetchProjects(1, true);
   }, []);
 
-  // Reset and refetch when category changes
   useEffect(() => {
     setProjects([]);
     fetchProjects(1, true);
   }, [selectedCategory]);
 
   const fetchProjects = async (page: number, isInitial: boolean = false) => {
-    if (isInitial) {
-      setLoading(true);
-    } else {
-      setLoadingMore(true);
-    }
+    if (isInitial) setLoading(true);
+    else setLoadingMore(true);
 
     try {
       const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
@@ -135,17 +129,13 @@ export default function PortfolioPage() {
           .filter((project: Project) => project.isActive)
           .sort((a: Project, b: Project) => a.order - b.order);
         
-        if (isInitial) {
-          setProjects(activeProjects);
-        } else {
-          setProjects(prev => [...prev, ...activeProjects]);
-        }
+        if (isInitial) setProjects(activeProjects);
+        else setProjects(prev => [...prev, ...activeProjects]);
         
         setPagination(data.pagination);
         setHasMore(data.pagination.currentPage < data.pagination.totalPages);
       }
     } catch (error) {
-      console.warn('Backend unreachable. Loading fallback premium data.', error);
       if (isInitial) {
         setProjects(fallbackProjects);
         setPagination({
@@ -162,7 +152,6 @@ export default function PortfolioPage() {
     }
   };
 
-  // Intersection Observer for infinite scroll
   const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
     const [target] = entries;
     if (target.isIntersecting && hasMore && !loadingMore && pagination) {
@@ -180,11 +169,8 @@ export default function PortfolioPage() {
     });
 
     observerRef.current.observe(element);
-
     return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
+      if (observerRef.current) observerRef.current.disconnect();
     };
   }, [handleObserver]);
 
@@ -192,19 +178,17 @@ export default function PortfolioPage() {
     ? projects 
     : projects.filter(project => project.category === selectedCategory);
 
-  // Dynamic Helper to create the repeating Mosaic Grid Pattern
   const getSpanClass = (index: number) => {
-    const pattern = index % 5; // Repeats every 5 items to keep the grid perfectly shaped
+    const pattern = index % 5;
     switch (pattern) {
-      case 0: return "md:col-span-2 md:row-span-2"; // Big Square
-      case 1: return "md:col-span-1 md:row-span-1"; // Small Square
-      case 2: return "md:col-span-1 md:row-span-1"; // Small Square
-      case 3: return "md:col-span-2 md:row-span-1"; // Wide Rectangle
-      case 4: return "md:col-span-4 md:row-span-1"; // Panoramic Full Width
+      case 0: return "md:col-span-2 md:row-span-2";
+      case 1: return "md:col-span-1 md:row-span-1";
+      case 2: return "md:col-span-1 md:row-span-1";
+      case 3: return "md:col-span-2 md:row-span-1";
+      case 4: return "md:col-span-4 md:row-span-1";
       default: return "md:col-span-2 md:row-span-2";
     }
   };
-
 
   return (
     <div className="min-h-screen bg-zinc-50 font-sans">
@@ -257,7 +241,7 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* --- PROJECTS GRID (DYNAMIC MOSAIC) --- */}
+      {/* --- UNIFIED RESPONSIVE GRID --- */}
       <section className="py-16 md:py-24 bg-zinc-50 min-h-[50vh]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {filteredProjects.length === 0 ? (
@@ -267,7 +251,6 @@ export default function PortfolioPage() {
               <p className="text-sm md:text-base text-slate-500 font-light">Check back soon for our latest architectural work.</p>
             </div>
           ) : (
-            /* DYNAMIC GRID: Responsive spans based on mobile vs desktop */
             <motion.div layout className="grid grid-cols-1 md:grid-cols-4 md:auto-rows-[350px] gap-6 md:gap-4">
               <AnimatePresence mode="popLayout">
                 {filteredProjects.map((project, index) => (
@@ -278,7 +261,7 @@ export default function PortfolioPage() {
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.5 }}
                     key={project._id}
-                    className={`group relative overflow-hidden bg-white shadow-sm md:shadow-none border border-zinc-100 md:border-transparent ${getSpanClass(index)}`}
+                    className={`group relative overflow-hidden bg-white shadow-sm md:shadow-none md:bg-transparent rounded-sm cursor-pointer ${getSpanClass(index)}`}
                   >
                     <Link href={`/portfolio/${project._id}`} className="flex flex-col md:block w-full h-full">
                       
@@ -287,43 +270,47 @@ export default function PortfolioPage() {
                         <img 
                           src={project.featuredImage} 
                           alt={project.title}
-                          className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out md:group-hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out md:group-hover:scale-110"
                         />
-                        {/* Hover Overlay (Desktop Only) */}
-                        <div className="hidden md:block absolute inset-0 bg-black/40 backdrop-blur-[2px] translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] z-10"></div>
+                        {/* Desktop Gradient Overlay (Hidden on Mobile) */}
+                        <div className="hidden md:block absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
                       </div>
 
-                      {/* 2. CONTENT CONTAINER */}
-                      {/* Mobile: Always visible, dark text on light bg. Desktop: Fades in on hover, white text on dark bg. */}
-                      <div className="relative md:absolute md:inset-0 p-5 sm:p-6 md:p-8 flex flex-col justify-end z-20 transition-all duration-700 ease-out bg-zinc-50 md:bg-transparent flex-1 md:opacity-0 md:translate-y-8 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:delay-100">
+                      {/* 2. CONTENT CONTAINER (Mobile: Light BG / Desktop: Transparent with White Text) */}
+                      <div className="relative md:absolute md:inset-0 p-6 md:p-8 flex flex-col justify-end z-20 bg-zinc-50 md:bg-transparent flex-1 border-t border-zinc-100 md:border-transparent">
                         
-                        {/* Category Tag */}
-                        <span className="text-white bg-[#a68a6b] self-start px-2.5 py-1 text-[10px] md:text-xs font-bold uppercase tracking-widest mb-3 md:mb-4 block shadow-sm md:shadow-md">
-                          {project.category}
-                        </span>
-                        
-                        {/* Title */}
-                        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-slate-900 md:text-white mb-2 md:drop-shadow-md transition-colors">
-                          {project.title}
-                        </h3>
-                        
-                        {/* Location */}
-                        <div className="flex items-center gap-2 text-slate-500 md:text-zinc-200 text-xs sm:text-sm font-light mb-5 md:mb-6 md:drop-shadow-md transition-colors">
-                          <MapPin className="w-3.5 h-3.5 md:w-4 md:h-4 text-[#a68a6b]" />
-                          {project.location}
-                        </div>
-
-                        {/* Divider & Action Button */}
-                        <div className="mt-auto md:mt-0 pt-4 md:pt-5 border-t border-zinc-200 md:border-white/30 flex items-center justify-between transition-colors">
-                          <span className="text-slate-900 md:text-white text-xs md:text-sm uppercase tracking-wider font-bold transition-colors">
-                            View Project
+                        {/* Slide-up Wrapper (Desktop only animation) */}
+                        <div className="md:transform md:translate-y-4 md:group-hover:translate-y-0 transition-transform duration-500 flex flex-col h-full justify-end">
+                          
+                          <span className="text-[#a68a6b] md:text-[#c5a686] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-2 block md:opacity-0 md:group-hover:opacity-100 transition-all duration-700 delay-100">
+                            {project.category}
                           </span>
-                          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border border-zinc-300 md:border-white/50 flex items-center justify-center text-slate-900 md:text-white group-hover:bg-[#a68a6b] group-hover:border-[#a68a6b] group-hover:text-white transition-colors duration-500">
-                            <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4 transform -rotate-45 group-hover:rotate-0 transition-transform duration-500" />
-                          </div>
-                        </div>
 
+                          <h3 className="text-xl md:text-2xl lg:text-3xl font-serif font-medium text-slate-900 md:text-white mb-2 md:drop-shadow-sm transition-colors">
+                            {project.title}
+                          </h3>
+
+                          <div className="flex items-center gap-2 text-slate-500 md:text-white/70 text-xs sm:text-sm font-light mb-5 md:mb-6 transition-colors">
+                            <MapPin className="w-3.5 h-3.5 text-[#a68a6b]" />
+                            {project.location}
+                          </div>
+
+                          {/* Action Button */}
+                          <div className="mt-auto md:mt-0 pt-4 border-t border-zinc-200 md:border-white/20 flex items-center justify-between md:opacity-0 md:group-hover:opacity-100 transition-all duration-500 delay-200">
+                            <span className="text-slate-900 md:text-white text-[10px] md:text-xs uppercase tracking-widest font-bold">View Case Study</span>
+                            <div className="w-8 h-8 rounded-full border border-zinc-200 md:border-white/30 flex items-center justify-center text-slate-900 md:text-white group-hover:bg-[#a68a6b] group-hover:border-[#a68a6b] md:group-hover:text-white transition-colors">
+                               <ArrowRight className="w-3.5 h-3.5 transform -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+                            </div>
+                          </div>
+
+                        </div>
                       </div>
+
+                      {/* Desktop Corner Accent */}
+                      <div className="hidden md:block absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30">
+                         <div className="w-8 h-8 border-t border-r border-white/30" />
+                      </div>
+                      
                     </Link>
                   </motion.div>
                 ))}

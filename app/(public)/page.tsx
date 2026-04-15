@@ -101,60 +101,69 @@ export default function Home() {
       </main>
 
       {/* --- 2. WHO WE ARE SECTION --- */}
-      <section className="py-20 md:py-32 bg-zinc-50 relative z-20 border-b border-zinc-200">
+     <section className="py-20 md:py-16 bg-zinc-50 relative z-20 border-b border-zinc-200 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Added flex-col-reverse for mobile so text shows above image */}
-          <div className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-16 items-center">
+          {/* Upgraded to an asymmetrical editorial grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-center">
             
-            {/* Image Box */}
+            {/* Image Box - Editorial Style */}
             <motion.div 
-              initial={{ opacity: 0, x: -40 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
-              viewport={{ once: true }} 
-              transition={{ duration: 0.8 }} 
-              className="w-full lg:w-1/2 h-[350px] sm:h-[500px] md:h-[600px]"
+              initial={{ opacity: 0, y: 40 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true, margin: "-100px" }} 
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} 
+              className="lg:col-span-5 relative group order-2 lg:order-1"
             >
-             <img 
-  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-  alt="Grand Architecture Interior" 
-  className="w-full h-full object-cover rounded-sm shadow-xl" 
-/>
-            </motion.div>
-
-            {/* Text Content Box */}
-            <motion.div 
-              initial={{ opacity: 0, x: 40 }} 
-              whileInView={{ opacity: 1, x: 0 }} 
-              viewport={{ once: true }} 
-              transition={{ duration: 0.8, delay: 0.2 }} 
-              className="w-full lg:w-1/2"
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-px w-8 bg-[#a68a6b]"></div>
-                <span className="text-[#a68a6b] font-semibold uppercase tracking-widest text-sm">Who We Are</span>
+              {/* Image Frame */}
+              <div className="relative z-10 overflow-hidden rounded-sm aspect-[4/5] bg-zinc-200">
+                <img 
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                  alt="Grand Architecture Interior" 
+                  className="w-full h-full object-cover transition-all duration-[1.5s] ease-out group-hover:scale-105 grayscale hover:grayscale-0" 
+                />
               </div>
               
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-bold text-slate-900 mb-8 lg:mb-10 leading-snug not-uppercase">
+              {/* Elegant Accent Box (Offset) */}
+              <div className="absolute -bottom-6 -left-6 w-3/4 h-3/4 bg-white border border-zinc-200 -z-10 hidden md:block transition-transform duration-700 group-hover:-translate-x-2 group-hover:translate-y-2"></div>
+              
+              {/* Corner Accent Line */}
+              <div className="absolute -top-4 -right-4 w-12 h-12 border-t border-r border-[#a68a6b] z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100"></div>
+            </motion.div>
+
+            {/* Text Content Box - Refined Typography */}
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }} 
+              whileInView={{ opacity: 1, x: 0 }} 
+              viewport={{ once: true, margin: "-100px" }} 
+              transition={{ duration: 0.8, delay: 0.2 }} 
+              className="lg:col-span-7 order-1 lg:order-2 lg:pl-6"
+            >
+              <div className="flex items-center gap-4 mb-8">
+                <div className="h-[1px] w-12 bg-[#a68a6b]"></div>
+                <span className="text-[#a68a6b] font-medium uppercase tracking-[0.25em] text-[10px] md:text-xs">Who We Are</span>
+              </div>
+              
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-medium text-slate-900 mb-10 leading-[1.4]">
                 RK Interior Studio is a refined interior design firm dedicated to crafting sophisticated and timeless spaces. We seamlessly combine thoughtful design, premium materials, and meticulous attention to detail to create environments that embody elegance and individuality.
               </h2>
               
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 mb-8 lg:mb-10 pb-8 lg:pb-10 border-b border-zinc-200">
-                <div>
-                  <h4 className="text-3xl md:text-4xl font-bold text-slate-900 mb-1 sm:mb-2">500+</h4>
-                  <p className="text-[10px] md:text-xs text-zinc-500 uppercase tracking-widest font-semibold">Spaces Curated</p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 py-10 border-y border-zinc-200 mb-10">
+                <div className="relative sm:border-r border-zinc-200 last:border-0">
+                  <h4 className="text-3xl md:text-5xl font-serif text-slate-900 mb-2">500<span className="text-[#a68a6b] text-2xl md:text-3xl">+</span></h4>
+                  <p className="text-[10px] md:text-xs text-slate-400 uppercase tracking-widest font-medium">Spaces Curated</p>
                 </div>
-                <div>
-                  <h4 className="text-3xl md:text-4xl font-bold text-slate-900 mb-1 sm:mb-2">10+</h4>
-                  <p className="text-[10px] md:text-xs text-zinc-500 uppercase tracking-widest font-semibold">Years Excellence</p>
+                <div className="relative sm:border-r border-zinc-200 last:border-0 sm:pl-4">
+                  <h4 className="text-3xl md:text-5xl font-serif text-slate-900 mb-2">10<span className="text-[#a68a6b] text-2xl md:text-3xl">+</span></h4>
+                  <p className="text-[10px] md:text-xs text-slate-400 uppercase tracking-widest font-medium">Years Excellence</p>
                 </div>
-                <div className="col-span-2 sm:col-span-1">
-                  <h4 className="text-3xl md:text-4xl font-bold text-slate-900 mb-1 sm:mb-2">100%</h4>
-                  <p className="text-[10px] md:text-xs text-zinc-500 uppercase tracking-widest font-semibold">Client Satisfaction</p>
+                <div className="col-span-2 sm:col-span-1 sm:pl-4">
+                  <h4 className="text-3xl md:text-5xl font-serif text-slate-900 mb-2">100<span className="text-[#a68a6b] text-2xl md:text-3xl">%</span></h4>
+                  <p className="text-[10px] md:text-xs text-slate-400 uppercase tracking-widest font-medium">Client Satisfaction</p>
                 </div>
               </div>
               
-              <p className="text-base sm:text-lg text-slate-600 font-light leading-relaxed">
+              <p className="text-base sm:text-lg text-slate-500 font-light leading-relaxed">
                 With a growing portfolio of thoughtfully designed projects, RK Interior Studio brings expertise in interior design and space planning. Our work is defined by attention to detail, refined aesthetics, and a commitment to creating spaces that elevate everyday living.
               </p>
             </motion.div>
@@ -164,7 +173,7 @@ export default function Home() {
       </section>
 
       {/* --- 3. DESIGN PHILOSOPHY SECTION --- */}
-      <section className="py-20 md:py-32 bg-white relative z-20 overflow-hidden">
+      <section className="py-20 md:py-16 bg-white relative z-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -285,35 +294,47 @@ export default function Home() {
       <FeaturedProjects />
 
       {/* --- 5. PHILOSOPHY SECTION --- */}
-      <section className="py-20 md:py-24 bg-zinc-50 relative z-20">
+    <section className="py-20 md:py-16 bg-zinc-50 relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center mb-12 sm:mb-16">
+          {/* --- UPGRADED HEADER & SUBHEADER --- */}
+          <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }}
+              className="flex items-center justify-center gap-4 mb-6"
+            >
+              <div className="h-[1px] w-8 sm:w-12 bg-[#a68a6b]"></div>
+              <span className="text-[#a68a6b] font-medium uppercase tracking-[0.25em] text-[10px] md:text-xs">
+                Methodology
+              </span>
+              <div className="h-[1px] w-8 sm:w-12 bg-[#a68a6b]"></div>
+            </motion.div>
+            
             <motion.h2 
               initial={{ opacity: 0, y: 20 }} 
               whileInView={{ opacity: 1, y: 0 }} 
               viewport={{ once: true }} 
-              className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4 font-serif"
+              transition={{ delay: 0.2 }}
+              className="text-3xl md:text-4xl lg:text-5xl font-serif font-medium text-slate-900 mb-6 md:mb-8 leading-tight"
             >
-              Our Process
+              A structured approach to <br className="hidden sm:block" />
+              <span className="italic font-light text-slate-500">refined design.</span>
             </motion.h2>
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }} 
-              whileInView={{ opacity: 1, scale: 1 }} 
-              viewport={{ once: true }} 
-              className="h-1 w-20 bg-[#a68a6b] mx-auto mb-6" 
-            />
+            
             <motion.p 
               initial={{ opacity: 0 }} 
               whileInView={{ opacity: 1 }} 
               viewport={{ once: true }} 
-              transition={{ delay: 0.2 }} 
-              className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-light"
+              transition={{ delay: 0.4 }} 
+              className="text-base sm:text-lg text-slate-500 font-light leading-relaxed px-4 sm:px-0"
             >
-              From concept to completion, our process is rooted in meticulous planning, thoughtful collaboration, and unwavering attention to detail. Every project reflects our commitment to excellence and refined design.
+              From concept to completion, our process is rooted in meticulous planning, thoughtful collaboration, and unwavering attention to detail. Every project reflects our commitment to excellence.
             </motion.p>
           </div>
 
+          {/* --- EXISTING CARDS (Subtly refined typography to match) --- */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {processSteps.map((step, index) => (
               <motion.div 
@@ -323,20 +344,24 @@ export default function Home() {
                 viewport={{ once: true }} 
                 transition={{ delay: index * 0.1 }} 
                 whileHover={{ y: -5 }} 
-                className="bg-white p-6 sm:p-8 border border-zinc-200 group transition-all duration-300 hover:shadow-xl hover:border-[#a68a6b] relative"
+                className="bg-white p-6 sm:p-8 border border-zinc-200 group transition-all duration-300 hover:shadow-xl hover:border-[#a68a6b]/50 relative"
               >
                 {/* Step Number */}
-                <div className="absolute top-4 right-4 text-5xl md:text-6xl font-serif font-bold text-[#a68a6b]/10 group-hover:text-[#a68a6b]/20 transition-colors">
+                <div className="absolute top-4 right-4 text-5xl md:text-6xl font-serif font-light text-[#a68a6b]/10 group-hover:text-[#a68a6b]/20 transition-colors">
                   {step.number}
                 </div>
                 
                 {/* Content */}
                 <div className="relative z-10">
                   <div className="inline-flex p-4 bg-zinc-50 shadow-sm mb-6 group-hover:bg-[#a68a6b] transition-colors duration-300">
-                    <step.icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#a68a6b] group-hover:text-white transition-colors duration-300" />
+                    <step.icon className="w-6 h-6 sm:w-7 sm:h-7 text-[#a68a6b] group-hover:text-white transition-colors duration-300" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 font-serif tracking-wide">{step.title}</h3>
-                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-light">{step.description}</p>
+                  <h3 className="text-sm sm:text-base font-medium text-slate-900 mb-3 tracking-[0.15em] uppercase">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-slate-500 leading-relaxed font-light">
+                    {step.description}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -344,7 +369,6 @@ export default function Home() {
           
         </div>
       </section>
-
       {/* --- 6. MISSION & VISION SECTION --- */}
       <MissionVision />
     </div>
