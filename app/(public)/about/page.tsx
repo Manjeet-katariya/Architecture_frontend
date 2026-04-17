@@ -344,36 +344,7 @@ export default function AboutPage() {
   </div>
 </section>
 
-      {/* 5. THE JOURNEY (Timeline) */}
-      <section className="py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-serif font-bold text-slate-900 mb-4">Our Journey</h2>
-            <div className="h-1 w-20 bg-[#a68a6b] mx-auto mb-6"></div>
-            <p className="text-lg text-slate-600 font-light">A timeline of passion, precision, and continuous evolution.</p>
-          </div>
-
-          <div className="relative border-l-2 border-zinc-200 ml-3 md:ml-6 space-y-12 pb-4">
-            {journeySteps.map((step, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="relative pl-8 md:pl-12"
-              >
-                {/* Timeline Dot */}
-                <div className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-[#a68a6b] ring-4 ring-white"></div>
-                
-                <span className="text-[#a68a6b] font-bold text-xl font-serif block mb-2">{step.year}</span>
-                <h3 className="text-2xl font-bold text-slate-900 mb-3">{step.title}</h3>
-                <p className="text-slate-600 font-light leading-relaxed">{step.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       {/* 5. VIDEO SECTION */}
     {/* --- CINEMATIC VIDEO SECTION (Light Theme) --- */}

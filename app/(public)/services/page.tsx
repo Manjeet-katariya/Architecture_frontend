@@ -93,18 +93,36 @@ export default function ServicesPage() {
               className="w-full lg:w-1/2"
             >
               <span className="text-[#a68a6b] font-semibold uppercase tracking-[0.2em] text-xs sm:text-sm mb-2 sm:mb-3 md:mb-4 block">SERVICE 01</span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-3 md:mb-6 leading-tight">RESIDENTIAL <br className="hidden sm:block" /> PROJECTS</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-3 md:mb-6 leading-tight">ARCHITECTURAL <br className="hidden sm:block" /> DESIGN</h2>
               <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-light mb-6 md:mb-10">
                 We specialize in crafting bespoke living spaces that are both luxurious and liveable. From ground-up residential builds to complete home transformations, our approach ensures your sanctuary is a true reflection of your personality and lifestyle.
               </p>
-              <ul className="space-y-3 md:space-y-6 text-slate-800 mb-6 md:mb-12">
-                {["Custom Villa & Home Design", "Kitchen & Bathroom Remodeling", "Master Bedroom Sanctuaries", "Spatial Planning & Flow"].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-2 sm:gap-3 md:gap-4">
-                    <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#a68a6b] flex-shrink-0 mt-0.5" />
-                    <span className="text-sm sm:text-base md:text-lg font-medium font-serif">{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="space-y-4 md:space-y-6 mb-6 md:mb-10">
+                <div className="p-3 md:p-4 bg-white/50 border-l-2 border-[#a68a6b]">
+                  <h4 className="text-sm sm:text-base md:text-lg font-semibold text-slate-900 mb-1">Concept Design</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-slate-600 font-light leading-relaxed">Creative design ideas aligned with your vision and lifestyle</p>
+                </div>
+                <div className="p-3 md:p-4 bg-white/50 border-l-2 border-[#a68a6b]">
+                  <h4 className="text-sm sm:text-base md:text-lg font-semibold text-slate-900 mb-1">Space Planning</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-slate-600 font-light leading-relaxed">Smart layouts for efficient use of space and smooth flow</p>
+                </div>
+                <div className="p-3 md:p-4 bg-white/50 border-l-2 border-[#a68a6b]">
+                  <h4 className="text-sm sm:text-base md:text-lg font-semibold text-slate-900 mb-1">2D Layouts & 3D Visualization</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-slate-600 font-light leading-relaxed">Detailed drawings and realistic views for better understanding</p>
+                </div>
+                <div className="p-3 md:p-4 bg-white/50 border-l-2 border-[#a68a6b]">
+                  <h4 className="text-sm sm:text-base md:text-lg font-semibold text-slate-900 mb-1">Elevation & Facade Design</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-slate-600 font-light leading-relaxed">Modern and elegant exterior designs</p>
+                </div>
+                <div className="p-3 md:p-4 bg-white/50 border-l-2 border-[#a68a6b]">
+                  <h4 className="text-sm sm:text-base md:text-lg font-semibold text-slate-900 mb-1">Design Coordination</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-slate-600 font-light leading-relaxed">Aligning architecture with interior and structural elements</p>
+                </div>
+                <div className="p-3 md:p-4 bg-white/50 border-l-2 border-[#a68a6b]">
+                  <h4 className="text-sm sm:text-base md:text-lg font-semibold text-slate-900 mb-1">Site Support</h4>
+                  <p className="text-xs sm:text-sm md:text-base text-slate-600 font-light leading-relaxed">Assistance during execution to ensure design accuracy</p>
+                </div>
+              </div>
               <Link href="/contact" className="inline-block w-full sm:w-auto text-center bg-[#a68a6b] hover:bg-[#8e7358] text-white px-4 sm:px-6 md:px-8 lg:px-10 py-2.5 sm:py-3 md:py-3.5 lg:py-4 rounded-sm font-bold uppercase tracking-wider sm:tracking-widest transition-colors duration-300 shadow-md text-xs sm:text-sm">
                 Discuss Your Home
               </Link>
@@ -140,17 +158,39 @@ export default function ServicesPage() {
               className="w-full lg:w-1/2"
             >
               <span className="text-[#a68a6b] font-semibold uppercase tracking-[0.2em] text-xs sm:text-sm mb-2 sm:mb-3 md:mb-4 block">SERVICE 02</span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-3 md:mb-6 leading-tight">COMMERCIAL <br className="hidden sm:block" /> SPACES</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-white mb-3 md:mb-6 leading-tight">INTERIOR <br className="hidden sm:block" /> SERVICES</h2>
               <p className="text-sm sm:text-base md:text-lg text-zinc-400 leading-relaxed font-light mb-6 md:mb-10">
-                Your commercial space is an extension of your brand. We design dynamic environments that inspire productivity, impress clients, and foster growth, from modern corporate offices to inviting hospitality venues.
+                Your space is an extension of your personality. We design dynamic environments that inspire, impress, and create lasting impressions, from elegant homes to sophisticated commercial spaces.
               </p>
-              <ul className="space-y-3 md:space-y-6 text-zinc-200 mb-6 md:mb-12">
-                {["Corporate Office Design & Strategy", "Retail Store Environments", "Hospitality & Restaurant Ambience", "Brand Integration & Signage"].map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-2 sm:gap-3 md:gap-4">
-                    <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#a68a6b] flex-shrink-0 mt-0.5" />
-                    <span className="text-sm sm:text-base md:text-lg font-medium font-serif">{item}</span>
-                  </li>
-                ))}
+              <ul className="space-y-4 md:space-y-6 text-zinc-200 mb-6 md:mb-12">
+                <li className="flex items-start gap-2 sm:gap-3 md:gap-4">
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#a68a6b] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-sm sm:text-base md:text-lg font-medium font-serif block mb-1">Residential Interior Design</span>
+                    <p className="text-xs sm:text-sm md:text-base text-zinc-400 font-light leading-relaxed">Thoughtfully designed homes that balance comfort, style, and functionality</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-2 sm:gap-3 md:gap-4">
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#a68a6b] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-sm sm:text-base md:text-lg font-medium font-serif block mb-1">Space Planning</span>
+                    <p className="text-xs sm:text-sm md:text-base text-zinc-400 font-light leading-relaxed">Optimized layouts for better flow and usability</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-2 sm:gap-3 md:gap-4">
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#a68a6b] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-sm sm:text-base md:text-lg font-medium font-serif block mb-1">Turnkey Interior Solutions</span>
+                    <p className="text-xs sm:text-sm md:text-base text-zinc-400 font-light leading-relaxed">End-to-end execution from design to final handover</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-2 sm:gap-3 md:gap-4">
+                  <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-[#a68a6b] flex-shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-sm sm:text-base md:text-lg font-medium font-serif block mb-1">Renovation & Remodeling</span>
+                    <p className="text-xs sm:text-sm md:text-base text-zinc-400 font-light leading-relaxed">Transforming existing spaces into refined, modern interiors</p>
+                  </div>
+                </li>
               </ul>
               <Link href="/contact" className="inline-block w-full sm:w-auto text-center bg-white text-zinc-900 px-4 sm:px-6 md:px-8 lg:px-10 py-2.5 sm:py-3 md:py-3.5 lg:py-4 rounded-sm font-bold uppercase tracking-wider sm:tracking-widest transition-colors duration-300 hover:bg-zinc-200 shadow-md text-xs sm:text-sm">
                 Elevate Your Workspace
@@ -171,7 +211,7 @@ export default function ServicesPage() {
               className="w-full lg:w-1/2"
             >
               <span className="text-[#a68a6b] font-semibold uppercase tracking-[0.2em] text-xs sm:text-sm mb-2 sm:mb-3 md:mb-4 block">SERVICE 03</span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-3 md:mb-6 leading-tight">AWARD WINNING <br className="hidden sm:block" /> DESIGN</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-slate-900 mb-3 md:mb-6 leading-tight">COMMERCIAL <br className="hidden sm:block" /> SPACES</h2>
               <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed font-light mb-6 md:mb-10">
                 Our designs have earned global recognition for innovation and excellence. We create award-winning interiors that set new standards in the industry, blending creativity with functionality to deliver spaces that inspire and endure.
               </p>
@@ -193,7 +233,7 @@ export default function ServicesPage() {
               initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8 }}
               className="w-full lg:w-1/2 h-[200px] xs:h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px] overflow-hidden rounded-sm shadow-2xl"
             >
-              <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Turnkey Construction" className="w-full h-full object-cover transition-transform duration-1000 ease-in-out hover:scale-105" />
+              <img src="https://images.pexels.com/photos/13590960/pexels-photo-13590960.jpeg" alt="Turnkey Construction" className="w-full h-full object-cover transition-transform duration-1000 ease-in-out hover:scale-105" />
             </motion.div>
           </div>
         </div>

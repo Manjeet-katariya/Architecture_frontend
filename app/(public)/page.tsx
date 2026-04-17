@@ -145,7 +145,11 @@ export default function Home() {
               </div>
               
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif font-medium text-slate-900 mb-10 leading-[1.4]">
-                RK Interior Studio is a refined interior design firm dedicated to crafting sophisticated and timeless spaces. We seamlessly combine thoughtful design, premium materials, and meticulous attention to detail to create environments that embody elegance and individuality.
+                RK 
+Interior Studio is a luxury interior design firm dedicated to creating timeless 
+and sophisticated spaces. We blend thoughtful design, premium materials, and fine 
+detailing to craft environments that reflect elegance, individuality, and modern living.
+
               </h2>
               
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 py-10 border-y border-zinc-200 mb-10">
@@ -154,7 +158,7 @@ export default function Home() {
                   <p className="text-[10px] md:text-xs text-slate-400 uppercase tracking-widest font-medium">Spaces Curated</p>
                 </div>
                 <div className="relative sm:border-r border-zinc-200 last:border-0 sm:pl-4">
-                  <h4 className="text-3xl md:text-5xl font-serif text-slate-900 mb-2">10<span className="text-[#a68a6b] text-2xl md:text-3xl">+</span></h4>
+                  <h4 className="text-3xl md:text-5xl font-serif text-slate-900 mb-2">15<span className="text-[#a68a6b] text-2xl md:text-3xl">+</span></h4>
                   <p className="text-[10px] md:text-xs text-slate-400 uppercase tracking-widest font-medium">Years Excellence</p>
                 </div>
                 <div className="col-span-2 sm:col-span-1 sm:pl-4">

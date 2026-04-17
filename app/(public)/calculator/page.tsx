@@ -20,7 +20,7 @@ export default function CalculatorPage() {
     rooms: '2 BHK',
     name: '',
     email: '',
-    budget: 'not-decided'
+    budget: 'under-10lakh'
   });
 
   const [estimateData, setEstimateData] = useState<{
@@ -46,17 +46,15 @@ export default function CalculatorPage() {
     try {
       // Calculate estimate locally first
       const area = parseInt(formData.area) || 0;
-      let baseRate = 100;
-      if (formData.projectType === 'Commercial') baseRate = 120;
-      if (formData.projectType === 'Restaurant') baseRate = 150;
+      
+      // Base rates per sq ft based on quality level
+      let baseRate = 2300; // Standard
+      if (formData.style === 'Premium') baseRate = 3500;
+      if (formData.style === 'Luxury') baseRate = 5500;
 
-      let styleFactor = 1.0;
-      if (formData.style === 'Premium') styleFactor = 1.3;
-      if (formData.style === 'Luxury') styleFactor = 1.6;
+      const totalCost = area * baseRate;
 
-      const totalCost = area * baseRate * styleFactor;
-
-      setEstimateData({ total: totalCost, baseRate, styleFactor, area });
+      setEstimateData({ total: totalCost, baseRate, styleFactor: 1, area });
 
       // Submit to backend API
       const estimatePayload = {
@@ -339,7 +337,6 @@ export default function CalculatorPage() {
                         <div>
                           <label className="block text-sm text-zinc-500 mb-2 font-medium">Your Budget Range</label>
                           <select name="budget" value={formData.budget} onChange={handleInputChange} className="w-full border border-zinc-300 p-3 rounded-sm focus:border-[#a68a6b] focus:ring-1 focus:ring-[#a68a6b] outline-none transition-all">
-                            <option value="not-decided">Not decided yet</option>
                             <option value="under-10lakh">Under ₹10 Lakhs</option>
                             <option value="10-20-lakh">₹10-20 Lakhs</option>
                             <option value="20-50-lakh">₹20-50 Lakhs</option>
@@ -415,8 +412,7 @@ export default function CalculatorPage() {
                         </div>
                         <div className="space-y-3">
                           <div className="flex justify-between"><span>Base Area:</span><span className="text-white">{estimateData.area} sq ft</span></div>
-                          <div className="flex justify-between"><span>Base Rate ({formData.projectType}):</span><span className="text-white">₹{estimateData.baseRate} / sq ft</span></div>
-                          <div className="flex justify-between"><span>Style Multiplier ({formData.style}):</span><span className="text-white">x {estimateData.styleFactor}</span></div>
+                          <div className="flex justify-between"><span>Base Rate ({formData.projectType}):</span><span className="text-white">₹{estimateData.baseRate} / sq ft ({formData.style})</span></div>
                         </div>
                       </div>
 
