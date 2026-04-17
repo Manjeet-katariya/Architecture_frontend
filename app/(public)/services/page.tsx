@@ -233,7 +233,7 @@ export default function ServicesPage() {
               initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.8 }}
               className="w-full lg:w-1/2 h-[200px] xs:h-[250px] sm:h-[350px] md:h-[450px] lg:h-[550px] overflow-hidden rounded-sm shadow-2xl"
             >
-              <img src="https://images.pexels.com/photos/13590960/pexels-photo-13590960.jpeg" alt="Turnkey Construction" className="w-full h-full object-cover transition-transform duration-1000 ease-in-out hover:scale-105" />
+              <img src="https://res.cloudinary.com/dl1ks8hey/image/upload/v1776433822/WhatsApp_Image_2026-04-17_at_6.52.19_PM_xrex7b.jpg" alt="Turnkey Construction" className="w-full h-full object-cover transition-transform duration-1000 ease-in-out hover:scale-105" />
             </motion.div>
           </div>
         </div>
